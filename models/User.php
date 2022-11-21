@@ -2,22 +2,23 @@
 
 
 class User {
-    private $first_name;
-    private $last_name;
-    private $email;
-    private $username;
-    private $password;
-    private $image;
+    private string $first_name;
+    private string $last_name;
+    private string $email;
+    private string $username;
+    private string $password;
+    private string $image;
     
-    function __construct($first_name, $last_name, $email, $username, $password) {
+    public function __construct($first_name, $last_name, $email, $username, $password) {
         $this->first_name = $first_name;
-        $this->last_naem = $last_name;
+        $this->last_name = $last_name;
         $this->email = $email;
         $this->username = $username;
         $this->password = $password;
+        $this->image = '';
     }
 
-    function __get($property) {
+    public function __get($property) {
         if ($property === 'first_name') {
             return $this->get_first_name();
         } elseif ($property === 'last_name') {
@@ -33,7 +34,7 @@ class User {
         }
     }
 
-    function __set($property, $value) {
+    public function __set($property, $value) {
         if ($property === 'first_name') {
             $this->set_first_name($value);
         } elseif ($property === 'last_name') {
@@ -49,53 +50,71 @@ class User {
         }
     }
 
-    function get_first_name() {
+    public function __toString() {
+        return <<<USER
+            <b>User</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp; First Name: $this->first_name<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; Last Name: $this->last_name<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; Email: $this->email<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; Username: $this->username<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; Password: $this->password<br> 
+            &nbsp;&nbsp;&nbsp;&nbsp; Image: $this->image<br>
+        USER;
+    }
+
+    public function get_first_name() {
         return $this->first_name;
     }
 
-    function set_first_name($first_name) {
+    public function set_first_name($first_name) {
         $this->first_name = $first_name;
     }
 
-    function get_last_name() {
+    public function get_last_name() {
         return $this->last_name;
     }
 
-    function set_last_name($last_name) {
+    public function set_last_name($last_name) {
         $this->last_name = $last_name;
     }
 
-    function get_email() {
+    public function get_email() {
         return $this->email;
     }
 
-    function set_email($email) {
+    public function set_email($email) {
         $this->email = $email;
     }
 
-    function get_username() {
+    public function get_username() {
         return $this->username;
     }
 
-    function set_username($username) {
+    public function set_username($username) {
         $this->username = $username;
     }
 
-    function get_password() {
+    public function get_password() {
         return $this->password;
     }
 
-    function set_password($password) {
+    public function set_password($password) {
         $this->password = $password;
     }
 
-    function get_image() {
+    public function get_image() {
         return $this->image;
     }
 
-    function set_image($image) {
+    public function set_image($image) {
         $this->image = $image;
     }
 }
+
+# Local tests 
+
+// $user = new User("David", "Haring", "davidharingri@gmail.com", "davidh22", "mysecurepass123");
+// $user->image = "cute_doggo_image";
+// echo $user;
 
 ?>
