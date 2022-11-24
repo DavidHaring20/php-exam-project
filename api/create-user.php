@@ -17,7 +17,10 @@ if ($password !== $password_retype) {
 }
 
 $user = new User($first_name, $last_name, $email, $username, $password);
-echo $user;
+$user->create_user();
+
+# Query for creating user 
+# INSERT INTO users(first_name, last_name, email, username, password) VALUES("David", "Haring", "davidharingri@gmail.com", "davidh123", "mysecretpass123");
 
 
 ?>

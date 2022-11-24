@@ -1,5 +1,7 @@
 <?php
 
+# __DIR__ /opt/lampp/htdocs/php-exam-project/models
+
 
 class User {
     private string $first_name;
@@ -108,6 +110,26 @@ class User {
 
     public function set_image($image) {
         $this->image = $image;
+    }
+
+    public function create_user() {
+        require_once __DIR__.'/../services/database-connector.php';
+
+        try {
+            $query = $database->prepare('INSERT INTO users(first_name, last_name, email, username, password) VALUES(:first_name, :last_name, :email, :username, :password)');
+        
+            $query->bindValue(':first_name', $this->get_first_name());
+            $query->bindValue(':last_name', $this->get_last_name());
+            $query->bindValue(':email', $this->get_email());
+            $query->bindValue(':username', $this->get_username());
+            $query->bindValue(':password', $this->get_password());
+
+            $query->execute();
+            $id = $database->lastInsertId();
+            echo $id;
+        } catch (PDOException $exception) {
+            echo $exception;
+        }
     }
 }
 
