@@ -1,7 +1,5 @@
 <?php
 
-# __DIR__ /opt/lampp/htdocs/php-exam-project/models
-
 
 class User {
     private string $first_name;
@@ -126,7 +124,7 @@ class User {
 
             $query->execute();
             $id = $database->lastInsertId();
-            echo $id;
+            echo "Added user successfully with ID: ".$id;
         } catch (PDOException $exception) {
             echo $exception;
         }
