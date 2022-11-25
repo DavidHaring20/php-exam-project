@@ -13,7 +13,7 @@
     </nav>
 
     <main>
-        <form action="/signup" method="POST">
+        <form action="signup" method="POST">
             <div>
                 <label for="first-name">First Name:</label>
                 <input id="first-name" type="text" name="firstName" placeholder="First Name">
@@ -32,12 +32,12 @@
 
             <div>
                 <label for="password">Password:</label>
-                <input id="password" type="password" name="password" placeholder="Password">
+                <input id="password" type="text" name="password" placeholder="Password">
             </div>
 
             <div>
                 <label for="retype-password">Retype Password:</label>
-                <input id="retype-password" type="password" name="retypePassword" placeholder="Retype Password">
+                <input id="retype-password" type="text" name="passwordRetype" placeholder="Retype Password">
             </div>
 
             <button type="submit">Submit</button>

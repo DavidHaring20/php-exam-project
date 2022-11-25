@@ -1,7 +1,5 @@
 RewriteEngine On
 
-# GET 
-
 # Views
 RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^$          views/index.php     [NC,L]
@@ -12,12 +10,16 @@ RewriteRule ^signup$    views/signup.php    [NC,L]
 RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^login$     views/login.php     [NC,L]
 
-
-# Views
+RewriteCond %{REQUEST_METHOD} GET           
+RewriteRule ^home$      views/home.php      [NC,L]
 
 # Api
+# POST
 RewriteCond %{REQUEST_METHOD} POST
 RewriteRule ^signup$    api/create-user.php [NC,L]
+
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule ^login$     api/create-session.php  [NC,L]
 
 # Errors
 ErrorDocument 404       view_errors/404.php

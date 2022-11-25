@@ -111,7 +111,7 @@ class User {
     }
 
     public function create_user() {
-        require_once __DIR__.'/../services/database-connector.php';
+        require_once(__DIR__.'/../services/database-connector.php');
 
         try {
             $query = $database->prepare('INSERT INTO users(first_name, last_name, email, username, password) VALUES(:first_name, :last_name, :email, :username, :password)');

@@ -11,6 +11,7 @@ $password = validate_password();
 $password_retype = $_POST['passwordRetype'];
 
 if ($password !== $password_retype) {
+    echo json_encode(['passwordRetype' => $password_retype]);
     respond("Passwords do not match", 400);
 }
 
@@ -19,5 +20,6 @@ $password = password_hash($password, PASSWORD_DEFAULT);
 $user = new User($first_name, $last_name, $email, $username, $password);
 $user->create_user();
 
+header('Location: ./login');
 
 ?>
