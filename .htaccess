@@ -36,5 +36,8 @@ RewriteRule ^signup$    api/create-user.php [NC,L]
 RewriteCond %{REQUEST_METHOD} POST
 RewriteRule ^login$     api/create-session.php  [NC,L]
 
+RewriteCond %{REQUEST_METHOD} POST 
+RewriteRule ^change-password$ api/change-password.php [NC,L]
+
 # Errors
 ErrorDocument 404       view_errors/404.php

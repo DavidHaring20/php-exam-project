@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['email'])) {
+        header('Location: ./login');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,5 +15,38 @@
 </head>
 <body>
     <h1>Change Password</h1>
+
+    <main>
+        <div>
+            <p>Here you can create your new password. Rules for password are:</p>
+            <ol>
+                <li>
+                    Must be minimum 8 characters long
+                </li>
+                <li>
+                    Must be maximum 16 characters long
+                </li>
+                <li>
+                    Must not contain other symbols than # ! $ and _
+                </li>
+                <li>
+                    Can contain any numerical or alphabetical character
+                </li>
+            </ol>
+        </div>
+
+        <div class="change-password">
+            <?php 
+                require_once(__DIR__.'/../api/get-user-by-email.php');
+
+                echo '<form action="change-password" method="POST">';
+                echo '<input hidden type="text" name="email" value="'.$user->get_email().'">';
+                echo '<input type="text" name="password" placeholder="Password">';
+                echo '<input type="text" name="passwordRetype" placeholder="Retype Password">';
+                echo '<button>Submit</button>';
+                echo '</form>';
+            ?>
+        </div>
+    </main>
 </body>
 </html>

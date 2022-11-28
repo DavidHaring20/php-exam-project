@@ -16,6 +16,14 @@
 <body>
     <h1>Profile</h1>
 
+    <div class="user-notification">
+        <?php
+            if (isset($_SESSION['notification'])) {
+                echo '<p>'.$_SESSION['notification'].'</p>';
+            }
+        ?>
+    </div>
+
     <div class="user-information">
         <?php
             require_once(__DIR__.'/../api/get-user-by-email.php');

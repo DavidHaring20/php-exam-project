@@ -20,11 +20,6 @@
     </nav>
         
     <h3>Welcome Home !</h3>
-    <p>
-        <?php
-            echo $_SESSION['first_name'];            
-        ?>
-    </p>
 
 </body>
 </html>

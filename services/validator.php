@@ -115,6 +115,25 @@ function validate_password() {
     return $password;
 } 
 
+function validate_password_retype() {
+    $error_message = 'password must be longer than ' . PASSWORD_MIN_LEN . ' and shorter than ' . EMAIL_MAX_LEN;
+    if (!isset($_POST['passwordRetype'])) {
+        respond($error_message, 400);
+    } 
+    $password = trim($_POST['passwordRetype']);
+    if (strlen($password) < PASSWORD_MIN_LEN) {
+        respond($error_message);
+    }
+    if (strlen($password) > PASSWORD_MAX_LEN) {
+        respond($error_message);
+    }
+    $error_message = 'password can contain only alphabetical, numerical and these characters # ? ! _';
+    if (!preg_match('/'.PASSWORD_REGEX.'/', $password)) {
+        respond($error_message);
+    }
+    return $password;
+} 
+
 # Finish this function when working on uploading image
 function validate_image() {}
 
