@@ -15,5 +15,15 @@
 </head>
 <body>
     <h1>Profile</h1>
+
+    <div class="user-information">
+        <?php
+            require_once(__DIR__.'/../api/get-user-by-email.php');
+
+            echo '<p>'.$user->get_first_name().' '.$user->get_last_name().'</p>';
+            echo '<p>'.$user->get_username().'</p>';
+            echo '<p>'.$user->get_email().'</p>';
+        ?>
+    </div>
 </body>
 </html>
