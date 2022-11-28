@@ -25,5 +25,14 @@
             echo '<p>'.$user->get_email().'</p>';
         ?>
     </div>
+
+    <div class="user-options">
+        <form action="change-password" method="GET">
+            <button>Change Password</button>
+        </form>
+        <form action="edit-profile" method="GET">
+            <button>Edit Profile</button>
+        </form>
+    </div>
 </body>
 </html>
