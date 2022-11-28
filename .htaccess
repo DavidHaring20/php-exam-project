@@ -18,16 +18,19 @@ RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^profile$   views/profile.php   [NC,L]    
 
 RewriteCond %{REQUEST_METHOD} GET
-RewriteRule ^change-password$ views/change-password.php [NC,L]
+RewriteRule ^update-password$ views/update-password.php [NC,L]
 
 RewriteCond %{REQUEST_METHOD} GET
-RewriteRule ^edit-profile$ views/edit-profile.php [NC,L]
+RewriteRule ^update-profile$ views/update-profile.php [NC,L]
 
 
 # Api
 # GET
 RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^logout$    api/logout.php      [NC,L]
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^get-session-information$    api/get-session-information.php     [NC,L]
 
 # POST
 RewriteCond %{REQUEST_METHOD} POST
@@ -37,7 +40,10 @@ RewriteCond %{REQUEST_METHOD} POST
 RewriteRule ^login$     api/create-session.php  [NC,L]
 
 RewriteCond %{REQUEST_METHOD} POST 
-RewriteRule ^change-password$ api/change-password.php [NC,L]
+RewriteRule ^update-password$ api/update-password.php [NC,L]
+
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule ^update-profile$ api/update-profile.php [NC,L]
 
 # Errors
 ErrorDocument 404       view_errors/404.php

@@ -1,5 +1,7 @@
 <?php
 
+define('ID_REGEX', '\d');
+
 define('NAME_MIN_LEN', 2);
 define('NAME_MAX_LEN', 12);
 define('NAME_REGEX', '([A-Za-z])+');
@@ -15,6 +17,20 @@ define('USERNAME_REGEX', '([A-Za-z0-9])+');
 define('PASSWORD_MIN_LEN', 8);
 define('PASSWORD_MAX_LEN', 16);
 define('PASSWORD_REGEX', '([A-Za-z0-9#!$_])+');
+
+function validate_id() {
+    $error_message = 'id is missing';
+    if (!isset($_POST['id'])) {
+        respond($error_message, 400);
+    }
+    $id = $_POST['id'];
+    $error_message = 'id must be longer a number';
+    if (!preg_match('/'.ID_REGEX.'/', $id)) {
+        respond($error_message);
+    }
+
+    return $id;
+}
 
 function validate_first_name() {
     $error_message = 'firstName must be longer than ' . NAME_MIN_LEN . ' and shorter than' . NAME_MAX_LEN;

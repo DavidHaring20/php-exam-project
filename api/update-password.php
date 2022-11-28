@@ -25,7 +25,7 @@ try {
     if ($query->rowCount() == 0) {
         // echo json_encode(['information' => 'User cannot be updated']);
         $_SESSION['error'] = 'Failed to change password';
-        header('Location: ./change-password');
+        header('Location: ./update-password');
         exit();
     }
 
