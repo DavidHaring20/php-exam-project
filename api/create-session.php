@@ -23,6 +23,9 @@ try {
     
     $user = new User($data['first_name'], $data['last_name'], $data['email'], $data['username'], $data['password']);
     if (password_verify($password, $user->get_password())) {
+        session_start();
+        $_SESSION['first_name'] = $user->get_first_name();
+        $_SESSION['email'] = $user->get_email();
         header('Location: ./home');
     } else {
         header('Location: ./login');

@@ -1,5 +1,6 @@
 RewriteEngine On
 
+
 # Views
 RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^$          views/index.php     [NC,L]
@@ -13,7 +14,15 @@ RewriteRule ^login$     views/login.php     [NC,L]
 RewriteCond %{REQUEST_METHOD} GET           
 RewriteRule ^home$      views/home.php      [NC,L]
 
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^profile$   views/profile.php   [NC,L]    
+
+
 # Api
+# GET
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^logout$    api/logout.php      [NC,L]
+
 # POST
 RewriteCond %{REQUEST_METHOD} POST
 RewriteRule ^signup$    api/create-user.php [NC,L]
