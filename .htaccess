@@ -23,6 +23,9 @@ RewriteRule ^update-password$ views/update-password.php [NC,L]
 RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^update-profile$ views/update-profile.php [NC,L]
 
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^delete-profile$ views/delete-profile.php [NC,L]
+
 
 # Api
 # GET
@@ -44,6 +47,9 @@ RewriteRule ^update-password$ api/update-password.php [NC,L]
 
 RewriteCond %{REQUEST_METHOD} POST
 RewriteRule ^update-profile$ api/update-profile.php [NC,L]
+
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule ^delete-profile$ api/delete-profile.php [NC,L]
 
 # Errors
 ErrorDocument 404       view_errors/404.php
