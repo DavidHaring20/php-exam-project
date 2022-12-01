@@ -44,6 +44,9 @@
         <form action="delete-profile" method="GET">
             <button>Delete user</button>
         </form>
+        <form action="update-image" method="GET">
+            <button>Update Image</button>
+        </form>
     </div>
 </body>
 </html>

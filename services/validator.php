@@ -151,7 +151,65 @@ function validate_password_retype() {
 } 
 
 # Finish this function when working on uploading image
-function validate_image() {}
+function validate_image() {
+    $image = $_FILES['image']['name'];
+    $image_tmp = $_FILES['image']['tmp_name'];
+    $image_size = $_FILES['image']['size'];
+    
+    // Check if file is image
+    $size = getimagesize($image_tmp);
+    if ($size === false) {
+        respond('file is not image');
+    }
+
+    // Check file type
+    $image_file_extension = strtolower(pathinfo(basename($image),PATHINFO_EXTENSION));
+    $allowed_file_extensions = ['jpeg', 'png'];
+    if (!in_array($image_file_extension, $allowed_file_extensions)) {
+        respond('file type not allowed');
+    }
+
+    // Check file size
+    if ($image_size > 2000000) {
+        respond('file type is too big');
+    }
+
+    // Randomize image name
+    $image_name = bin2hex(random_bytes(16));
+    switch($image_file_extension) {
+        case 'jpeg':
+            $image_name .= '.jpeg';
+            break;
+        case 'png':
+            $image_name .= '.png';
+            break;
+    }
+
+    // Check if there is already file with same name
+    $upload_dir = __DIR__."/../images/";
+    $upload_file = $upload_dir . basename($image_name);
+    if (file_exists($upload_file)) {
+        respond('file already exists');
+    }
+
+    $data = [
+        'image_name'    => $image_name,
+        'image_tmp'     => $image_tmp
+    ];
+
+    var_dump($data);
+    return $data;
+    
+
+    // $move_file = move_uploaded_file($image_tmp, $upload_dir . $img);
+    // if ($move_file) {
+    //     $fullpath =  $upload_dir . $image;
+    // }
+    // else {
+    //     echo 'Failed!';
+    //     return false;
+    // }
+}
 
 function respond($message='', $status=200) {
     http_response_code($status);

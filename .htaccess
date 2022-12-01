@@ -26,6 +26,9 @@ RewriteRule ^update-profile$ views/update-profile.php [NC,L]
 RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^delete-profile$ views/delete-profile.php [NC,L]
 
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^update-image$ views/update-image.php [NC,L]
+
 
 # Api
 # GET
@@ -50,6 +53,9 @@ RewriteRule ^update-profile$ api/update-profile.php [NC,L]
 
 RewriteCond %{REQUEST_METHOD} POST
 RewriteRule ^delete-profile$ api/delete-profile.php [NC,L]
+
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule ^update-image$ api/update-image.php [NC,L]
 
 # Errors
 ErrorDocument 404       view_errors/404.php
