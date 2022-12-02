@@ -27,11 +27,18 @@
     <div class="user-information">
         <?php
             require_once(__DIR__.'/../api/get-user-by-email.php');
+        ?>  
 
-            echo '<p>'.$user->get_first_name().' '.$user->get_last_name().'</p>';
-            echo '<p>'.$user->get_username().'</p>';
-            echo '<p>'.$user->get_email().'</p>';
-        ?>
+        <p>
+            <?php 
+                echo $user->get_first_name(); 
+                echo " ";            
+                echo $user->get_last_name()
+            ?>
+        </p>
+        <p><?php echo $user->get_username()?></p>
+        <p><?php echo $user->get_email()?></p>
+        <img <?php echo 'src="'.$user->get_image().'"';?> alt="User image">
     </div>
 
     <div class="user-options">

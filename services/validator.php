@@ -197,18 +197,7 @@ function validate_image() {
         'image_tmp'     => $image_tmp
     ];
 
-    var_dump($data);
     return $data;
-    
-
-    // $move_file = move_uploaded_file($image_tmp, $upload_dir . $img);
-    // if ($move_file) {
-    //     $fullpath =  $upload_dir . $image;
-    // }
-    // else {
-    //     echo 'Failed!';
-    //     return false;
-    // }
 }
 
 function respond($message='', $status=200) {

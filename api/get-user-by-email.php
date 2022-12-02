@@ -15,6 +15,7 @@ try {
     }
 
     $user = new User($data['first_name'], $data['last_name'], $data['email'], $data['username'], $data['password']);
+    $user->set_image($data['image']);
 } catch (PDOException $exception) {
     http_response_code(500);
     echo json_encode(['error' => 'error on line: '.__LINE__]);
