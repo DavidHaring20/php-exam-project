@@ -29,6 +29,12 @@ RewriteRule ^delete-profile$ views/delete-profile.php [NC,L]
 RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^update-image$ views/update-image.php [NC,L]
 
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^admin$ views/admin.php [NC,L]
+
+RewriteCond %{REQUEST_METHOD} GET 
+RewriteRule ^delete-user/(\d+)$ api/delete-user-by-id.php?id=$1 [NC,L]
+
 
 # Api
 # GET
@@ -37,6 +43,9 @@ RewriteRule ^logout$    api/logout.php      [NC,L]
 
 RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^get-session-information$    api/get-session-information.php     [NC,L]
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^get-users$    api/get-users.php     [NC,L]
 
 # POST
 RewriteCond %{REQUEST_METHOD} POST
