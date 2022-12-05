@@ -3,6 +3,10 @@
     if (!isset($_SESSION['email'])) {
         header('Location: ./login');
     }
+
+    function toHTMLentities($string) {
+        echo htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -31,13 +35,13 @@
 
         <p>
             <?php 
-                echo $user->get_first_name(); 
+                toHTMLentities($user->get_first_name()); 
                 echo " ";            
-                echo $user->get_last_name()
+                toHTMLentities($user->get_last_name());
             ?>
         </p>
-        <p><?php echo $user->get_username()?></p>
-        <p><?php echo $user->get_email()?></p>
+        <p><?php toHTMLentities($user->get_username())?></p>
+        <p><?php toHTMLentities($user->get_email())?></p>
         <img <?php echo 'src="'.$user->get_image().'"';?> alt="User image">
     </div>
 

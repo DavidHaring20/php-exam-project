@@ -3,6 +3,10 @@
     if (!isset($_SESSION['email'])) {
         header('Location: ./login');
     }
+
+    function toHTMLentities($string) {
+        echo htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -29,9 +33,15 @@
                         echo '<form action="delete-user/'.$user['id'].'" method="GET">';
                         echo '<div><li>';
                         echo '<div>Id: ' . $user['id'] .'</div>';
-                        echo '<div>First and last name: '. $user['first_name'] . " " . $user["last_name"] . '</div>';
-                        echo '<div>Username: ' . $user['username'] . '</div>';
-                        echo '<div>Email: ' . $user['email'] . '</div>';
+                        echo '<div>First and last name: ';
+                        toHTMLentities($user['first_name'] . " " . $user["last_name"]);
+                        echo '</div>';
+                        echo '<div>Username: ';
+                        toHTMLentities($user['username']);
+                        echo '</div>';
+                        echo '<div>Email: ';
+                        toHTMLentities($user['email']);
+                        echo '</div>';
                         echo '<button>Delete User</button>';
                         echo '</div></li><hr>';
                         echo '</form>';
