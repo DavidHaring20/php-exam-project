@@ -1,6 +1,5 @@
 <?php
 
-
 class User {
     private string $first_name;
     private string $last_name;
