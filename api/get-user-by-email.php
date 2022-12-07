@@ -14,7 +14,7 @@ try {
         echo json_encode(['information' => 'user with email: '.$_SESSION['email'].' could not be found']);
     }
 
-    $user = new User($data['first_name'], $data['last_name'], $data['email'], $data['username'], $data['password']);
+    $user = new User($data['id'], $data['first_name'], $data['last_name'], $data['email'], $data['username'], $data['password']);
     if (isset($data['image'])) {
         $user->set_image($data['image']);
     }

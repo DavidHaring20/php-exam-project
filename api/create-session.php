@@ -33,9 +33,7 @@ try {
     $user = user_from_data($data);
     if (password_verify($password, $user->get_password())) {
         session_start();
-        $_SESSION['id'] = $data['id'];
-        $_SESSION['first_name'] = $user->get_first_name();
-        $_SESSION['email'] = $user->get_email();
+        $user->create_session();
         header('Location: ./home');
         exit();
     } else {

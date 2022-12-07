@@ -1,8 +1,9 @@
 <?php
     session_start();
-    unset($_SESSION['first_name']);
-    unset($_SESSION['email']); 
-    unset($_SESSION['id']); 
-    session_destroy();
+    require_once(__DIR__.'/../models/User.php');
+    require_once(__DIR__.'/../services/database-connector.php');
+    require_once(__DIR__.'/../api/get-user-by-email.php');
+
+    $user->delete_session();
     header('Location: ./')
 ?>

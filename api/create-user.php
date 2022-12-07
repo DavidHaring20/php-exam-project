@@ -17,7 +17,7 @@ if ($password !== $password_retype) {
 
 # Hash password 
 $password = password_hash($password, PASSWORD_DEFAULT);
-$user = new User($first_name, $last_name, $email, $username, $password);
+$user = new User(0, $first_name, $last_name, $email, $username, $password);
 $user->create_user();
 
 header('Location: ./login');

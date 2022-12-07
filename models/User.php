@@ -1,6 +1,7 @@
 <?php
 
 class User {
+    private int $id;
     private string $first_name;
     private string $last_name;
     private string $email;
@@ -8,7 +9,8 @@ class User {
     private string $password;
     private string $image;
     
-    public function __construct($first_name, $last_name, $email, $username, $password) {
+    public function __construct($id, $first_name, $last_name, $email, $username, $password) {
+        $this->id = $id;
         $this->first_name = $first_name;
         $this->last_name = $last_name;
         $this->email = $email;
@@ -128,6 +130,30 @@ class User {
             echo json_encode(["error" => "error on line: ".__LINE__]);
         }
     }
+
+    public function create_session() {
+        $_SESSION['id'] = $this->id;
+        $_SESSION['first_name'] = $this->first_name;
+        $_SESSION['email'] = $this->email;
+    }
+
+    public function delete_session() {
+        unset($_SESSION['first_name']);
+        unset($_SESSION['email']); 
+        unset($_SESSION['id']); 
+        session_destroy();
+    }
+
+    public function get_profile() {}
+
+    public function update_profile() {}
+
+    public function delete_profile() {}
+
+    public function change_password() {}
+    
+    public function upload_image() {}
+
 }
 
 # Local tests 
