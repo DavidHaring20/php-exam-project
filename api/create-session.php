@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__.'/../models/User.php');
+require_once(__DIR__.'/../services/user-from-data.php');
 require_once(__DIR__.'/../services/validator.php');
 require_once(__DIR__.'/../services/database-connector.php');
 
@@ -26,11 +27,10 @@ try {
     if (!$data) {
         http_response_code(204);
         header('Location: ./login');
-        // echo json_encode(['information' => 'user with email: '.$email.' could not be found']);
         exit();
     }
     
-    $user = new User($data['first_name'], $data['last_name'], $data['email'], $data['username'], $data['password']);
+    $user = user_from_data($data);
     if (password_verify($password, $user->get_password())) {
         session_start();
         $_SESSION['id'] = $data['id'];
@@ -40,7 +40,6 @@ try {
         exit();
     } else {
         header('Location: ./login');
-        // echo json_encode(['information' => 'password is wrong']);
     }
     exit();
 } catch (PDOException $exception) {

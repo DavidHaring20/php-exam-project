@@ -125,7 +125,7 @@ class User {
             $id = $database->lastInsertId();
             echo "Added user successfully with ID: ".$id;
         } catch (PDOException $exception) {
-            echo $exception;
+            echo json_encode(["error" => "error on line: ".__LINE__]);
         }
     }
 }
