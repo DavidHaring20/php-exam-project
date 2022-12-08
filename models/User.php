@@ -171,11 +171,54 @@ class User {
         }
     }
 
-    public function delete_profile() {}
+    public function delete_profile($id) {
+        require(__DIR__.'/../services/database-connector.php');
+
+        try {
+            $query = $database->prepare('DELETE FROM users WHERE id = :id');
+            $query->bindValue('id', $id);
+            $query->execute();
+            if ($query->rowCount() == 0) {
+                echo json_encode(['error' => 'User could not be deleted']);
+                exit();
+            }
+            // echo json_encode(['information' => 'User deleted with ID: '.$id]);
+            header('Location: ./');
+            exit();
+        
+        } catch (PDOException $exception) {
+            http_response_code(500);
+            echo json_encode(['information' => 'error on line: '.__LINE__]);
+            exit();
+        }
+    }
 
     public function change_password() {}
     
-    public function upload_image() {}
+    public function upload_image($id, $image_data) {
+        require(__DIR__.'/../services/database-connector.php');
+        
+        try {
+            $upload_dir = __DIR__."/../images/";
+            $upload_file = $upload_dir . $image_data['image_name'];
+            if (move_uploaded_file($image_data['image_tmp'], $upload_file)) {
+                $query = $database->prepare("UPDATE users SET image = :image WHERE id = :id");
+                $query->bindValue('image', $image_data['image_name']);
+                $query->bindValue('id', $id);
+                $query->execute();
+                if ($query->rowCount() == 0) {
+                    header('Location: ./update-image');
+                    exit();
+                }
+                header('Location: ./profile');
+                exit();
+            }
+        } catch (PDOException $exception) {
+            http_response_code(500);
+            echo json_encode(['error' => 'error on line: '.__LINE__]);
+            exit();
+        }
+    }
 
 }
 

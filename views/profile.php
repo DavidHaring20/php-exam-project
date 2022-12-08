@@ -20,14 +20,6 @@
 <body>
     <h1>Profile</h1>
 
-    <div class="user-notification">
-        <?php
-            if (isset($_SESSION['notification'])) {
-                echo '<p>'.$_SESSION['notification'].'</p>';
-            }
-        ?>
-    </div>
-
     <div class="user-information">
         <?php
             require_once(__DIR__.'/../api/get-user-by-email.php');
@@ -42,7 +34,7 @@
         </p>
         <p><?php toHTMLentities($user->get_username())?></p>
         <p><?php toHTMLentities($user->get_email())?></p>
-        <img <?php echo 'src="'.$user->get_image().'"';?> alt="User image">
+        <img <?php echo 'src="images/'.$user->get_image().'"';?> alt="User image">
     </div>
 
     <div class="user-options">
