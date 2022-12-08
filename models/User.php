@@ -112,7 +112,7 @@ class User {
     }
 
     public function create_user() {
-        require_once(__DIR__.'/../services/database-connector.php');
+        require __DIR__.'/../services/database-connector.php';
 
         try {
             $query = $database->prepare('INSERT INTO users(first_name, last_name, email, username, password) VALUES(:first_name, :last_name, :email, :username, :password)');
@@ -144,9 +144,32 @@ class User {
         session_destroy();
     }
 
-    public function get_profile() {}
+    public function update_profile($id, $first_name, $last_name, $username, $email) {
+        require __DIR__.'/../services/database-connector.php';
 
-    public function update_profile() {}
+        try {
+            $query = $database->prepare('UPDATE users SET first_name = :first_name, last_name = :last_name, username = :username, email = :email WHERE id = :id');
+            $query->bindValue('first_name', $first_name);
+            $query->bindValue('last_name', $last_name);
+            $query->bindValue('username', $username);
+            $query->bindValue('email', $email);
+            $query->bindValue('id', $id);
+        
+            $query->execute();
+            if ($query->rowCount() == 0) {
+                echo json_encode(['information' => 'User could not be updated']);
+                exit();
+            }
+        
+            $_SESSION['notification'] = 'Password changed.';
+            header('Location: ./profile');
+            exit();
+        } catch (PDOException $exception) {
+            http_response_code(500);
+            echo json_encode(['error' => 'error on line: '.__LINE__]);
+            exit();
+        }
+    }
 
     public function delete_profile() {}
 
