@@ -193,7 +193,27 @@ class User {
         }
     }
 
-    public function change_password() {}
+    public function change_password($id, $password) {
+        require(__DIR__.'/../services/database-connector.php');
+
+        try {
+            $query = $database->prepare('UPDATE users SET password = :password WHERE id = :id');
+            $query->bindValue('password', $password);
+            $query->bindValue('id', $id);
+        
+            $query->execute();
+            if ($query->rowCount() == 0) {
+                // echo json_encode(['information' => 'User cannot be updated']);
+                header('Location: ./update-password');
+                exit();
+            }
+            // echo json_encode(['information' => 'User updated successfully']);
+            header('Location: ./profile');
+            exit();
+        } catch (PDOException $exception) {
+            echo $exception;
+        }
+    }
     
     public function upload_image($id, $image_data) {
         require(__DIR__.'/../services/database-connector.php');

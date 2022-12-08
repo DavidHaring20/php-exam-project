@@ -40,7 +40,6 @@
                 require_once(__DIR__.'/../api/get-user-by-email.php');
 
                 echo '<form action="update-password" method="POST">';
-                echo '<input hidden type="text" name="email" value="'.$user->get_email().'">';
                 echo '<input type="text" name="password" placeholder="Password">';
                 echo '<input type="text" name="passwordRetype" placeholder="Retype Password">';
                 echo '<button>Submit</button>';
