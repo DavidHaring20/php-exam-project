@@ -18,6 +18,11 @@
     <title>Profile</title>
 </head>
 <body>
+    <nav>
+        <a href="./home">Home</a>  
+        <a href="./logout">Logout</a>  
+    </nav>
+
     <h1>Profile</h1>
 
     <div class="user-information">

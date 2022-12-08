@@ -15,8 +15,8 @@
 </head>
 <body>
     <nav>
-        <a href="./logout">Logout</a>  
         <a href="./profile">Profile</a>  
+        <a href="./logout">Logout</a>  
     </nav>
         
     <h3>Welcome Home !</h3>

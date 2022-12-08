@@ -14,6 +14,11 @@
     <title>Update image</title>
 </head>
 <body>
+    <nav>
+        <a href="./profile">Profile</a>  
+        <a href="./logout">Logout</a>  
+    </nav>
+
     <h1>Update image</h1>
 
     <main>

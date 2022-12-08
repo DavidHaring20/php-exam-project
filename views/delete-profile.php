@@ -7,6 +7,11 @@
     <title>Delete profile</title>
 </head>
 <body>
+    <nav>
+        <a href="./profile">Profile</a>  
+        <a href="./logout">Logout</a>  
+    </nav>
+
     <h1>Delete profile</h1>
 
     <main>

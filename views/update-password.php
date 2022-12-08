@@ -14,6 +14,11 @@
     <title>Change Password</title>
 </head>
 <body>
+    <nav>
+        <a href="./profile">Profile</a>  
+        <a href="./logout">Logout</a>  
+    </nav>
+
     <h1>Change Password</h1>
 
     <main>
